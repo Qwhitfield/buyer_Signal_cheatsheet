@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buyer Signal Cheatsheet — QAMW Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --accent: #e8521a;
+    --accent2: #f0b429;
+    --mid: #1e1e1e;
+    --border: #2e2e2e;
+    --muted: #6b6b6b;
+    --green: #2d9e6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.45in 0.5in;
+    font-size: 11px;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+  }
+
+  .brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--muted);
+  }
+
+  .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+
+  .title span { color: var(--accent); }
+
+  .deadline-box {
+    text-align: right;
+  }
+
+  .deadline-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .deadline-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px;
+    line-height: 1;
+    color: var(--accent2);
+  }
+
+  .deadline-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* MISSION STRIP */
+  .mission {
+    background: var(--accent);
+    padding: 8px 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .mission-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--black);
+    white-space: nowrap;
+  }
+
+  .mission-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* MAIN GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--mid);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    color: var(--white);
+  }
+
+  .card-badge {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    padding: 2px 6px;
+    letter-spacing: 1px;
+  }
+
+  .badge-red { background: var(--accent); color: var(--black); }
+  .badge-yellow { background: var(--accent2); color: var(--black); }
+  .badge-green { background: var(--green); color: var(--white); }
+
+  .signal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .signal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #c8c4bc;
+  }
+
+  .signal-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .dot-red { background: var(--accent); }
+  .dot-yellow { background: var(--accent2); }
+  .dot-green { background: var(--green); }
+
+  .signal-highlight {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* SEARCH TERMS SECTION */
+  .search-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .search-platform {
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+  }
+
+  .platform-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .term-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .term {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: #9a9a9a;
+    padding: 2px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .term:last-child { border-bottom: none; }
+
+  /* OUTREACH TEMPLATE */
+  .template-box {
+    background: var(--black);
+    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: #9a9a9a;
+    line-height: 1.7;
+  }
+
+  .template-box em {
+    color: var(--accent2);
+    font-style: normal;
+  }
+
+  /* DAILY TRACKER */
+  .tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .day-col { text-align: center; }
+
+  .day-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+
+  .day-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .task-box {
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 4px 3px;
+    font-size: 8px;
+    font-family: 'DM Mono', monospace;
+    color: #6b6b6b;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .task-box.highlight {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .task-box.yellow {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+
+  /* NUMBERS ROW */
+  .numbers-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .number-card {
+    background: var(--mid);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .number-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .number-big.yellow { color: var(--accent2); }
+  .number-big.green { color: var(--green); }
+  .number-big.white { color: var(--white); }
+
+  .number-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    text-align: center;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-mantra {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: var(--muted);
+  }
+
+  .footer-mantra span { color: var(--accent); }
+
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--border);
+    letter-spacing: 1px;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="brand">QAMW CONSULTING — SYSTEMS UTILIZATION STRATEGIST</div>
+    <div class="title">BUYER SIGNAL <span>CHEATSHEET</span></div>
+  </div>
+  <div class="deadline-box">
+    <div class="deadline-label">TARGET CLOSE IN</div>
+    <div class="deadline-number">14</div>
+    <div class="deadline-sub">DAYS — ONE CLIENT — ONE OFFER</div>
+  </div>
+</div>
+
+<!-- MISSION STRIP -->
+<div class="mission">
+  <div class="mission-label">🎯 MISSION</div>
+  <div class="mission-text">Land 1 Fractional Systems Integration Retainer ($5K–$8K/mo) within 14 days targeting field service / construction SMBs ($2M–$15M revenue) via LinkedIn outreach</div>
+</div>
+
+<!-- NUMBERS ROW -->
+<div class="numbers-row">
+  <div class="number-card">
+    <div class="number-big">5</div>
+    <div class="number-label">New Signals<br>Identified / Day</div>
+  </div>
+  <div class="number-card">
+    <div class="number-big yellow">3</div>
+    <div class="number-label">Personalized<br>Outreach Messages / Day</div>
+  </div>
+  <div class="number-card">
+    <div class="number-big green">1</div>
+    <div class="number-label">Follow-Up per<br>Prior Contact / Day</div>
+  </div>
+  <div class="number-card">
+    <div class="number-big white">2</div>
+    <div class="number-label">Discovery Calls<br>Booked by Day 10</div>
+  </div>
+</div>
+
+<!-- SIGNAL CARDS ROW 1 -->
+<div class="grid">
+
+  <!-- HIGH SIGNAL -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔴</div>
+      <div class="card-title">HIGH SIGNAL</div>
+      <div class="card-badge badge-red">ACT NOW</div>
+    </div>
+    <ul class="signal-list">
+      <li class="signal-item">
+        <div class="signal-dot dot-red"></div>
+        <span>Job post lists <span class="signal-highlight">3+ tools</span> in requirements (ServiceTitan + QuickBooks + BuilderTrend = duct tape ops)</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-red"></div>
+        <span>Job posting for <span class="signal-highlight">Ops Manager or Data Analyst</span> at a company under 50 employees</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-red"></div>
+        <span>Same role <span class="signal-highlight">reposted 60–90 days</span> later — can't fill it = unresolved pain</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-red"></div>
+        <span>Job listing <span class="signal-highlight">disappeared without LinkedIn "hired" announcement</span> — gave up, pain still there</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-red"></div>
+        <span>Post says <span class="signal-highlight">"cleaning up processes" or "we're scaling fast"</span> anywhere in description</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- MEDIUM SIGNAL -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🟠</div>
+      <div class="card-title">MEDIUM SIGNAL</div>
+      <div class="card-badge badge-yellow">MONITOR</div>
+    </div>
+    <ul class="signal-list">
+      <li class="signal-item">
+        <div class="signal-dot dot-yellow"></div>
+        <span>Company <span class="signal-highlight">just promoted someone to Director/VP of Ops</span> — new leaders audit systems in first 90 days</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-yellow"></div>
+        <span>Owner posts about <span class="signal-highlight">"wearing too many hats," "growing pains," or hiring struggles</span></span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-yellow"></div>
+        <span>LinkedIn announcement: <span class="signal-highlight">"Excited to expand to [X] new locations"</span> — scale without systems = incoming chaos</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-yellow"></div>
+        <span>Company is <span class="signal-highlight">actively hiring field techs</span> (5+ open roles) but no ops infrastructure visible</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-yellow"></div>
+        <span>Owner LinkedIn shows <span class="signal-highlight">no activity for 3+ months</span> then sudden frustrated posts</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- REVIEW SIGNALS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🟢</div>
+      <div class="card-title">REVIEW SIGNALS</div>
+      <div class="card-badge badge-green">RESEARCH</div>
+    </div>
+    <ul class="signal-list">
+      <li class="signal-item">
+        <div class="signal-dot dot-green"></div>
+        <span>Google reviews mention <span class="signal-highlight">"scheduling issues," "didn't show up," or "wrong info"</span> — dispatch/data problem</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-green"></div>
+        <span>Owner <span class="signal-highlight">manually responds to every negative review</span> — no system behind customer experience</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-green"></div>
+        <span>3.5–4.1 star rating with <span class="signal-highlight">50+ reviews mentioning ops complaints</span></span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-green"></div>
+        <span><span class="signal-highlight">Multiple reviews from same month</span> with similar complaints = systemic, not one-off</span>
+      </li>
+      <li class="signal-item">
+        <div class="signal-dot dot-green"></div>
+        <span>Yelp/Google show <span class="signal-highlight">"communication breakdown" language</span> repeatedly across different reviewers</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- SEARCH TERMS + TEMPLATE -->
+<div class="grid-2col">
+
+  <!-- SEARCH TERMS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">SEARCH TERMS BY PLATFORM</div>
+    </div>
+    <div class="search-grid">
+      <div class="search-platform">
+        <div class="platform-label">📋 Indeed / LinkedIn Jobs</div>
+        <ul class="term-list">
+          <li class="term">"operations manager" ServiceTitan</li>
+          <li class="term">"operations manager" field service Seattle</li>
+          <li class="term">"data analyst" construction Washington</li>
+          <li class="term">"reporting specialist" home services</li>
+          <li class="term">"systems" "process improvement" hvac plumbing</li>
+          <li class="term">"operations coordinator" BuilderTrend</li>
+          <li class="term">"business intelligence" field service</li>
+        </ul>
+      </div>
+      <div class="search-platform">
+        <div class="platform-label">💼 LinkedIn People/Companies</div>
+        <ul class="term-list">
+          <li class="term">Title: "Owner" + "HVAC" + Seattle</li>
+          <li class="term">Title: "Owner" + "Plumbing" + WA</li>
+          <li class="term">New role: "Director of Operations" + construction</li>
+          <li class="term">Company: 10–50 employees + field service</li>
+          <li class="term">Keywords: "scaling" + "growing team" + trades</li>
+        </ul>
+      </div>
+      <div class="search-platform">
+        <div class="platform-label">⭐ Google / Yelp Review Search</div>
+        <ul class="term-list">
+          <li class="term">[Company] reviews site:google.com</li>
+          <li class="term">HVAC Seattle reviews "scheduling"</li>
+          <li class="term">Plumbing Tacoma reviews "communication"</li>
+          <li class="term">Roofing WA reviews "didn't show up"</li>
+        </ul>
+      </div>
+      <div class="search-platform">
+        <div class="platform-label">🌐 Idealist / Nonprofit</div>
+        <ul class="term-list">
+          <li class="term">"data" + "operations" nonprofit Seattle</li>
+          <li class="term">"systems" + "reporting" nonprofit WA</li>
+          <li class="term">"database" + "coordinator" + impact</li>
+          <li class="term">"Salesforce" OR "Power BI" nonprofit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTREACH TEMPLATE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">✉️</div>
+      <div class="card-title">OUTREACH TEMPLATE</div>
+      <div class="card-badge badge-red">SIGNAL-BASED</div>
+    </div>
+    <div style="margin-bottom: 8px; font-size: 9px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px;">JOB POSTING SIGNAL:</div>
+    <div class="template-box">
+      Hi <em>[Name]</em> — I noticed you're looking for a <em>[Ops Manager / Data Analyst]</em>. The job description mentions <em>[ServiceTitan + QuickBooks + BuilderTrend]</em> — that combination usually means reporting is manual and data lives in 3 places.<br><br>
+      Before you hire, it might be worth a 20-min conversation. I help field service companies get clarity on what their systems are actually costing them — often it's faster to fix than to hire around it.<br><br>
+      Worth a quick call?<br>
+      — Quinita
+    </div>
+
+    <div style="margin: 8px 0; font-size: 9px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px;">NEW OPS LEADER SIGNAL:</div>
+    <div class="template-box">
+      Congrats on the new role, <em>[Name]</em>. Most new ops leaders spend their first 60 days realizing the systems don't talk to each other.<br><br>
+      I help companies map what's actually happening in their stack before they start fixing the wrong thing. Happy to share what I usually find — no pitch.<br><br>
+      Open to a quick call?<br>
+      — Quinita
+    </div>
+  </div>
+
+</div>
+
+<!-- 14 DAY TRACKER -->
+<div class="card" style="margin-bottom: 12px;">
+  <div class="card-header">
+    <div class="card-icon">📅</div>
+    <div class="card-title">14-DAY DAILY TRACKER — ONE CLIENT BY DAY 14</div>
+  </div>
+  <div class="tracker-grid">
+    <div class="day-col">
+      <div class="day-label">MON WK1</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box">LinkedIn post</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">TUE WK1</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box">1 follow-up</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">WED WK1</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box">1 follow-up</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">THU WK1</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box yellow">1 call target</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">FRI WK1</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box">Week 1 review</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">MON WK2</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box yellow">2 calls booked</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">TUE WK2</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">5 signals found</div>
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box yellow">Discovery call</div>
+      </div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; margin-top: 6px;">
+    <div class="day-col">
+      <div class="day-label">WED WK2</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box yellow">Discovery call</div>
+        <div class="task-box">Follow-ups</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">THU WK2</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box yellow">Send proposal</div>
+        <div class="task-box">Follow-ups</div>
+      </div>
+    </div>
+    <div class="day-col">
+      <div class="day-label">FRI WK2</div>
+      <div class="day-tasks">
+        <div class="task-box highlight">3 outreach sent</div>
+        <div class="task-box yellow">Follow proposal</div>
+        <div class="task-box highlight">CLOSE</div>
+      </div>
+    </div>
+    <div class="day-col" style="grid-column: span 4;">
+      <div style="background: var(--black); border: 1px solid var(--accent); padding: 10px 14px; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 2px; margin-bottom: 6px;">14-DAY TOTALS</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+          <div style="font-size: 9px; color: #9a9a9a; font-family: 'DM Mono', monospace;">Signals identified: <span style="color: var(--white);">70</span></div>
+          <div style="font-size: 9px; color: #9a9a9a; font-family: 'DM Mono', monospace;">Messages sent: <span style="color: var(--white);">40+</span></div>
+          <div style="font-size: 9px; color: #9a9a9a; font-family: 'DM Mono', monospace;">Calls booked: <span style="color: var(--accent2);">2–4</span></div>
+          <div style="font-size: 9px; color: #9a9a9a; font-family: 'DM Mono', monospace;">Client closed: <span style="color: var(--accent);">1 ✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-mantra">FIX THE SYSTEM FIRST. <span>THEN SCALE.</span></div>
+  <div class="footer-meta">QAMW CONSULTING — QAMWCONSULTING.COM — PRINT & KEEP ON DESK</div>
+</div>
+
+</body>
+</html>
